@@ -1,20 +1,24 @@
 FROM node:8.9-alpine as angular
+RUN apk update
+RUN apk add nginx
+RUN apk add openrc --no-cache
 WORKDIR /usr/src/app
-RUN npm i -g @angular/cli
+RUN rm -v /etc/nginx/nginx.conf
+ADD nginx.conf /etc/nginx/
+RUN npm i -g @angular/cli --silent
 COPY package.json package.json
 RUN npm install --silent
 COPY . .
 ARG ng_arg=dev
 ENV ng_env $ng_arg
-RUN echo $ng_env
-RUN if [ $ng_env = prod ]; \
-    then \
-    echo "production"; \
-    fi
 CMD if [ $ng_env = prod ]; \
     then \
     echo "build" && \
-    ng build --prod -aot; \
+    ng build --prod -aot && \
+    mkdir -p /usr/src/build && \
+    cd /usr/src/build && \
+    cp -r /usr/src/app/dist /usr/src/build && \
+    rc-service nginx restart; \
     else \
     echo "serve" && \
     ng serve --host 0.0.0.0 --port 8080 --disable-host-check; \
