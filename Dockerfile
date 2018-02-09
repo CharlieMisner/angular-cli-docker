@@ -8,7 +8,7 @@ RUN mkdir /run/nginx
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /usr/src/app
-RUN npm i -g @angular/cli --silent
+RUN npm i -g @angular/cli@1.6.7
 COPY package.json package.json
 RUN npm install --silent
 COPY . .
