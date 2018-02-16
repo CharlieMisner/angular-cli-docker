@@ -8,11 +8,11 @@ RUN mkdir /run/nginx
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /usr/src/app
-RUN npm i -g @angular/cli@1.6.7
+RUN npm i -g @angular/cli@1.6.3
 COPY package.json package.json
 RUN npm install --silent
 COPY . .
-ARG ng_arg=dev
+ARG ng_arg=prod
 ENV ng_env $ng_arg
 
 CMD if [ $ng_env = prod ]; \
@@ -25,7 +25,7 @@ CMD if [ $ng_env = prod ]; \
     nginx; \
     else \
     echo "Serving Angular application with the Angular CLI..." && \
-    ng serve --host 0.0.0.0 --port 8080 --disable-host-check; \
+    ng serve --host 0.0.0.0 --port 8080; \
     fi
 
 EXPOSE 8080 8080

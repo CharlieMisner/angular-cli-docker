@@ -1,27 +1,18 @@
-# DockerAngular
+# Angular CLI and Docker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+This repository contains an Angular CLI app that runs inside of a docker container. The docker container can be built to run in either development or in production utilizing the CLI's ng serve and ng build commands, respectively.
 
-## Development server
+## For Development
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+When running the container in development mode, the user can take advantage of the Angular CLI's hot reload. To run the app in development mode (i.e. using ng serve), run the following commands:
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    ```
+    docker-compose build --build-arg ng_arg=dev docker-angular
+    docker-compose up
+    ```
+The statement `--build-arg ng_arg=dev` sets a docker build argument to development, and configures the container to execute the ng serve command. 
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
