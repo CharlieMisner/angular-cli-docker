@@ -2,7 +2,7 @@
 
 This repository contains an Angular CLI app that runs inside of a docker container. The docker container can be built to run in either development or in production utilizing the CLI's ng serve and ng build commands, respectively.
 
-## In Development
+## In Development (ng serve)
 
 When running the container in development, your can take advantage of the Angular CLI's hot reloading. To run the app in development (i.e. using ng serve), run the following commands:
 
@@ -11,7 +11,7 @@ When running the container in development, your can take advantage of the Angula
     
 The statement `--build-arg ng_arg=dev` configures the container to execute the ng serve command. 
 
-## In Production
+## In Production (ng build)
 
 When running the container in development, you can take advantage of the Angular CLI's Ahead of Time Compilation. To run the app in production (i.e. using ng build --aot), run the following commands:
 
