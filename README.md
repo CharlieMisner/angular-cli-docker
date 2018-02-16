@@ -18,5 +18,13 @@ When running the container in development, you can take advantage of the Angular
     docker-compose build
     docker-compose up
     
-If no build argument is provided, the container will default to production. If you would like you can set the build argument for production `--build-arg ng_arg=prod`.
+If no build argument is provided, the container will default to production. If you would like, you can set the build argument `--build-arg ng_arg=prod`.
+
+## Existing Angular CLI Applications
+
+To implement the docker container in an existing angular application, copy the following files into the app's root folder:
+
+    Dockerfile
+    docker-compose.yml
+    nginx.conf
 
